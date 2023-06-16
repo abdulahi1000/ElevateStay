@@ -6,6 +6,7 @@ import TopPickCard from '../../components/TopPickCard';
 import ImageSlider from '../../components/ImageSlider';
 import Card from '../../components/Card';
 import CallToAction from '../../components/CallToAction';
+import openNotification from '../../components/Notification';
 
 function Landing_page() {
   const apartmentsApi = data
@@ -76,8 +77,13 @@ function Landing_page() {
 
 
   const handleAddToCart = (data) => {
-    const itemToAdd = { id: 1, name: 'Product 1', price: 10 };
     addToCart(data);
+    openNotification(
+      "success",
+      "Cart update",
+      "Item added to your cart"
+    );
+
   };
   return (
     <>

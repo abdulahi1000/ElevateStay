@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaCartPlus } from "react-icons/fa";
 
 // import Profile from "../../../images/profile.png";
 import Logo from "../assets/images/logo1.png";
+import { DataContext } from "../DataProvider";
 // import { setUser, clearUser } from "../../../redux/actions/userAction";
 // import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +16,7 @@ const Header = ({ headless, bgpur, textwhite }) => {
   const { pathname } = location;
   const splitLocation = pathname.split("/");
   const [menuBar, setMenuBar] = useState(false);
+  const [cartCount, setCartCount] = useState(false);
   // const dispatch = useDispatch();
   // const username = useSelector((state) => state.user.username);
   // const userToken = useSelector((state) => state.user.Token);
@@ -24,10 +26,20 @@ const Header = ({ headless, bgpur, textwhite }) => {
   const username = null
   const navigate = useNavigate()
 
+  const sharedData = useContext(DataContext);
+  console.log('data change in h', sharedData)
+
+
   const handleMenu = () => {
     setMenuBar((prevMenuBar) => !prevMenuBar);
   };
-  const cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+  // const cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+  useEffect(()=>{
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+    setCartCount(cartCount)
+
+  }, [])
 
   return (
     <header

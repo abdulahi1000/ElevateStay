@@ -3,6 +3,7 @@ import WebsiteLayout from '../../layouts/WebsiteLayout'
 import { data } from '../../database/data'
 import Card from '../../components/Card'
 import { FaHamburger } from 'react-icons/fa'
+import openNotification from '../../components/Notification'
 
 function Rent() {
     const apartments = data
@@ -36,8 +37,12 @@ function Rent() {
     
     
       const handleAddToCart = (data) => {
-        const itemToAdd = { id: 1, name: 'Product 1', price: 10 };
         addToCart(data);
+        openNotification(
+          "success",
+          "Cart update",
+          "Item added to your cart"
+        );
       }
   return (
     <WebsiteLayout>

@@ -20,7 +20,7 @@ const Card = ({ id,image, name, description, price, rating, onAddToCartClick }) 
       };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-xl">
+    <div className="rounded overflow-hidden shadow-xl">
       <img className="w-full h-52 object-cover" src={image} alt={name} />
       <div className="px-6 py-4">
         <div className="flex justify-between">
